@@ -28,7 +28,7 @@ EM-GMM-UNMIX is a MATLAB project that utilizes the Expectation-Maximization (EM)
 2. **Run the Example Script**:  
 Open MATLAB and navigate to the project directory.:
 	```sh
-	run('EMAlgorithm_GaussianUnmix_Example.m'
+	run('EMAlgorithm_GaussianUnmix_Example.m'）
 ## Steps of the EM Algorithm  
 
 ### 1.Initialization: 
