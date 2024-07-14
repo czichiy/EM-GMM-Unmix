@@ -31,3 +31,29 @@ $$\pi_k = \frac{\sum_{i=1}^{N} \gamma_{ik}}{N}$$
 4.Iteration:   
 
 Repeat the E-Step and M-Step until convergence, i.e., until the parameters stabilize and the increase in log-likelihood is below a certain threshold.
+
+
+#### Comparison with the Provided Code
+
+##### File 1: ellipseCalculator.m
+
+Functionality:
+This file contains a function that calculates the points needed to draw an ellipse.
+
+Technical Explanation:
+
+	•	Inputs:
+	•	x, y: Coordinates of the center of the ellipse.
+	•	a: Semi-major axis.
+	•	b: Semi-minor axis.
+	•	angle: Rotation angle of the ellipse (in degrees).
+	•	steps: Number of points to calculate (default is 36).
+	•	Outputs:
+	•	X, Y: Coordinates of the points on the ellipse.
+	•	Procedure:
+	•	The function converts the angle from degrees to radians.
+	•	It calculates the sine and cosine of the angle.
+	•	It creates an array of angles (alpha) from 0 to 360 degrees.
+	•	It calculates the sine and cosine of these angles.
+	•	It computes the X and Y coordinates of the points on the ellipse using the parametric equation of an ellipse.
+	•	It adjusts these points based on the input center coordinates and rotation.
