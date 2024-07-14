@@ -37,7 +37,8 @@ Repeat the E-Step and M-Step until convergence, i.e., until the parameters stabi
 
 ##### File 1: ellipseCalculator.m
 
-Functionality:
+Functionality:  
+
 This file contains a function that calculates the points needed to draw an ellipse.
 
 Technical Explanation:
@@ -86,3 +87,26 @@ Technical Explanation:
 	•	Parameters (means, covariances, and weights) are updated based on the computed responsibilities.
 	•	Iteration and Convergence Check:
 	•	The process iterates until convergence is achieved based on the log-likelihood. If the change in log-likelihood is below a specified threshold or the maximum number of iterations is reached, the algorithm stops.
+
+##### File 3: EMAlgorithm_GaussianUnmix_Example.m
+
+Functionality:
+
+This file contains a function that performs the Expectation-Maximization (EM) algorithm for Gaussian Mixture Models (GMMs).
+
+Technical Explanation:
+
+	•	Inputs:
+	•	data: A matrix of size (n_samples, n_features) containing the data points.
+	•	num_clusters: The number of clusters (Gaussian components).
+	•	max_iter: The maximum number of iterations for the EM algorithm.
+	•	tol: The tolerance for convergence.
+	•	Outputs:
+	•	mu: A matrix of size (num_clusters, n_features) containing the means of the Gaussian components.
+	•	Sigma: A 3D matrix of size (num_clusters, n_features, n_features) containing the covariances of the Gaussian components.
+	•	weights: A vector of size (num_clusters, 1) containing the weights of the Gaussian components.
+	•	Procedure:
+	•	The function initializes the parameters (means, covariances, and weights) randomly.
+	•	E-step: It computes the responsibilities (the probability that each data point belongs to each cluster).
+	•	M-step: It updates the parameters (means, covariances, and weights) based on the responsibilities.
+	•	The function iterates between the E-step and M-step until convergence is achieved or the maximum number of iterations is reached.
