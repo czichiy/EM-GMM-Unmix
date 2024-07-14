@@ -4,21 +4,44 @@ The Expectation-Maximization (EM) algorithm is employed to estimate the paramete
 A GMM assumes that the data is generated from a mixture of several Gaussian distributions, each characterized by its mean, covariance matrix, and mixture weight. 
 The EM algorithm iteratively refines these parameters to maximize the likelihood of the observed data.
 
-#### Steps of the EM Algorithm  
+EM-GMM-UNMIX is a MATLAB project that utilizes the Expectation-Maximization (EM) algorithm to unmix and estimate the parameters of Gaussian Mixture Models (GMMs). This project is perfect for data scientists, statisticians, and machine learning enthusiasts.
 
 
+## Features
 
-1.Initialization: 
+- **Accurate Parameter Estimation**: Uses the EM algorithm to estimate means, covariances, and weights of Gaussian components.
+- **Visualization Tools**: Plots confidence ellipses to help visualize and interpret results.
+- **Synthetic Data Generation**: Example scripts demonstrate the application of the EM algorithm.
+
+## Files
+
+1. **`ellipseCalculator`**: Function to plot confidence ellipses.
+2. **`EMAlgorithm_GaussianUnmix`**: Function to implement the EM algorithm for GMMs.   
+3. **`EMAlgorithm_GaussianUnmix_Example`**: Script to generate synthetic data, apply the EM algorithm, and visualize results.
+
+## Getting Started
+
+1. **Clone the repository**:
+   ```sh
+   https://github.com/czichiy/EM-GMM-Unmix.git
+   cd EM-GMM-Unmix
+2. **Run the Example Script**:  
+Open MATLAB and navigate to the project directory.:
+	```sh
+	run('EMAlgorithm_GaussianUnmix_Example.m'
+## Steps of the EM Algorithm  
+
+### 1.Initialization: 
 
 Randomly initialize the parameters of the Gaussian components, including means, covariance matrices, and weights.
 
-2.Expectation Step (E-Step): 
+### 2.Expectation Step (E-Step): 
 
 Compute the posterior probabilities (responsibilities) that each data point belongs to each Gaussian component.
 
 $$\gamma_{ik} = \frac{\pi_k \mathcal{N}(x_i|\mu_k, \Sigma_k)}{\sum_{j=1}^{K} \pi_j \mathcal{N}(x_i|\mu_j, \Sigma_j)}$$
 
-3.Maximization Step (M-Step):   
+### 3.Maximization Step (M-Step):   
 
 Update the parameters to maximize the expected log-likelihood of the data given the responsibilities.
 
@@ -28,14 +51,14 @@ $$\Sigma_k = \frac{\sum_{i=1}^{N} \gamma_{ik} (x_i - \mu_k)(x_i - \mu_k)^T}{\sum
 
 $$\pi_k = \frac{\sum_{i=1}^{N} \gamma_{ik}}{N}$$
 
-4.Iteration:   
+### 4.Iteration:   
 
 Repeat the E-Step and M-Step until convergence, i.e., until the parameters stabilize and the increase in log-likelihood is below a certain threshold.
 
 
-#### Comparison with the Provided Code
+## Comparison with the Provided Code
 
-##### File 1: ellipseCalculator.m
+### File 1: ellipseCalculator.m
 
 Functionality:  
 
@@ -59,7 +82,7 @@ Technical Explanation:
 	•	It computes the X and Y coordinates of the points on the ellipse using the parametric equation of an ellipse.
 	•	It adjusts these points based on the input center coordinates and rotation.
 
-##### File 2: EMAlgorithm_GaussianUnmix.m
+### File 2: EMAlgorithm_GaussianUnmix.m
 
 Functionality:
 
@@ -88,7 +111,7 @@ Technical Explanation:
 	•	Iteration and Convergence Check:
 	•	The process iterates until convergence is achieved based on the log-likelihood. If the change in log-likelihood is below a specified threshold or the maximum number of iterations is reached, the algorithm stops.
 
-##### File 3: EMAlgorithm_GaussianUnmix_Example.m
+### File 3: EMAlgorithm_GaussianUnmix_Example.m
 
 Functionality:
 
@@ -110,3 +133,5 @@ Technical Explanation:
 	•	E-step: It computes the responsibilities (the probability that each data point belongs to each cluster).
 	•	M-step: It updates the parameters (means, covariances, and weights) based on the responsibilities.
 	•	The function iterates between the E-step and M-step until convergence is achieved or the maximum number of iterations is reached.
+
+
