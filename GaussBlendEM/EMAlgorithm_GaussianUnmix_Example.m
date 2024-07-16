@@ -24,12 +24,13 @@ N = 1000;
 
 %% Mixing proportion [0.5, 0.3, 0.2]
 s0 = rand(N,1);
+s = zeros(N, 1); % Initialize s to avoid undefined variable error
 s(s0<0.5) = 1;
 s(s0>0.5&s0<0.8) = 2;
 s(s0>=0.8)=3;
 
 %% Generate data following the mixed Gaussian distribution
-
+x = zeros(N, 2); % Initialize x to avoid undefined variable error
 for  i = 1 : N
     x(i,:) =  mvnrnd(Mu(s(i),:), Sig(:,:,s(i)));
 end
