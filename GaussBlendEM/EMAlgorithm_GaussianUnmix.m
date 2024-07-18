@@ -61,25 +61,27 @@ L = length(a0);
 a(:,1) = a0;
 MuE(:,:,1) = MuE0;
 SigE(:,:,:,1) = SigE0;
-Lh(1) = -inf;
+Lh(1) = -Inf; % Inf is the standard symbol for representing infinity, while inf is a less conventional notation.
 
 %% Iterations
 for t = 2 : Iter_max
-    
+    % E-step: Compute responsibilities
     for l = 1 : L
        pyx(:,l) = mvnpdf(x,MuE(l,:,t-1),SigE(:,:,l,t-1));
        py_x(:,l) = a(l,t-1)*pyx(:,l);
     end
-       py_x = ((1./sum(py_x,2))*ones(1,size(py_x,2))).*py_x;
+       py_x = bsxfun(@rdivide, py_x, sum(py_x, 2)); % Improve computational efficiency by using bsxfun to avoid generating unnecessary ones matrices.
        a(:,t) = mean(py_x)';
  
     for l = 1 : L
+    % M-step: Update parameters
+    for l = 1:L
         MuE(l,:,t) = sum((py_x(:,l)*ones(1,size(x,2))).*x)/sum(py_x(:,l));
         SigE(:,:,l,t) = (x-ones(N,1)*MuE(l,:,t))'* diag(py_x(:,l))*(x-ones(N,1)*MuE(l,:,t))/sum(py_x(:,l));
     end
-    
+    % Compute log-likelihood
     Lh(t) =sum(sum((ones(N,1)* log(a(:,t))').*py_x + log(py_x).*py_x));
-    if (Lh(t)-Lh(t-1))/abs(Lh(t-1)) < Iter_p & Iter_stop <1
+    if (Lh(t)-Lh(t-1))/abs(Lh(t-1)) < Iter_p && Iter_stop <1
         break;
     end
 end
